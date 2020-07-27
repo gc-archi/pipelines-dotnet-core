@@ -20,11 +20,6 @@ steps:
     packageType:  runtime
 - task:  DotNetCoreCLI@2
   inputs:
-    command:  'restore'
-    feedsToUse: 'select'
-    vstsFeed: 'my-vsts-feed'
-- task:  DotNetCoreCLI@2
-  inputs:
     command:  'build'
     arguments:  '--configuration $(buildCOnfiguration)'
   displayName:  'dotnet build $(buildConfiguration)'
