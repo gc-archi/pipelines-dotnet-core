@@ -54,3 +54,15 @@ steps:
   inputs:
     codeCoverageTool: 'Cobertura'
     summaryFileLocation: '$(Build.SourceDirectory)/**/coverage.cobertura.xml'
+
+- task: DotNetCoreCLI@2
+  inputs:
+    command: publish
+    publishWebProjects: true
+    arguments: '--configuration $(buildCOnfiguration) --output $(Build.ArtifactStagingDirectory)'
+    zipAfterPublish: true
+
+- task: PublishBuildArtifacts@1
+  inputs:
+    PathtoPublish: '$(Build.ArtifactStagingDirectory)'
+    artifactName: 'kino-NetCoreApp'
