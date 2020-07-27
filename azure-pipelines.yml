@@ -14,6 +14,10 @@ variables:
   buildConfiguration: 'Release'
 
 steps:
+- task:  UseDotNet@2
+  inputs:
+    version:  '3.0.x'
+    packageType:  runtime
 - task:  DotNetCoreCLI@2
   inputs:
     command:  'restore'
@@ -31,16 +35,6 @@ steps:
     command:  build
     projects:  '**/*.csproj'
     arguments:  '--configuration $(buildConfiguration)'
-    
-- task:  UseDotNet@2
-  inputs:
-    version:  '5.0.x'
-    includePreviewVersions: true
-
-- task:  UseDotNet@2
-  inputs:
-    version:  '3.0.x'
-    packageType:  runtime
 
 - task:  DotNetCoreCLI@2
   displayName: 'dotnet test'
